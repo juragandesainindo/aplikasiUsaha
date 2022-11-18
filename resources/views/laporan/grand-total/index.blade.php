@@ -23,19 +23,34 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="col-12 text-right">
-                                <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            <div class="row">
+                                <div class="col-6">
+                                    @if (request()->search > 0)
+                                    <strong>Periode {{ request()->search }}</strong>
+                                    @else
+                                    @endif
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a href="{{ route('laporan-grand-total.index') }}"
+                                        class="btn btn-sm btn-secondary px-3">
+                                        <i class="fas fa-redo-alt"></i>&nbsp;&nbsp;
+                                        Reset
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-primary px-3" data-toggle="modal"
                                         data-target="#filter">
                                         <i class="fas fa-search"></i>&nbsp;&nbsp; Filter
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary px-3" data-toggle="modal"
+                                        data-target="#print">
+                                        <i class="fas fa-print"></i>&nbsp;&nbsp; Print
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example1" class="table table-bordered text-center">
-                                    <thead>
+                                <table id="example1" class="table table-bordered">
+                                    <thead class="text-center">
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Usaha</th>
@@ -44,8 +59,48 @@
                                             <th>Total Laba</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
+                                        @php
+                                        $no=1;
+                                        @endphp
+                                        @foreach ($usahas as $item)
+                                        <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td>{{ $item->nama_usaha }}</td>
+                                            <td class="text-right">
+                                                {{
+                                                formatRupiahPdf($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
+                                                }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{ formatRupiahPdf($item->biaya->sum('jumlah_biaya') +
+                                                $item->gaji->sum('gaji')) }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{
+                                                formatRupiahPdf(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli')-($item->biaya->sum('jumlah_biaya')
+                                                + $item->gaji->sum('gaji'))))
+                                                }}
+                                            </td>
+
+                                        </tr>
+                                        @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Total</th>
+                                            <th class="text-right">
+                                                {{ formatRupiahPdf($pendapatanTotal) }}
+                                            </th>
+                                            <th class="text-right">
+                                                {{ formatRupiahPdf($biayaTotal) }}
+                                            </th>
+                                            <th class="text-right">
+                                                {{ formatRupiahPdf($totalLaba) }}
+                                            </th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -59,40 +114,5 @@
 </div>
 
 
-<!-- Modal Filter Start-->
-<div class="modal fade" id="filter">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Filter Laporan Grand Total</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('laporan-grand-total.show') }}" method="GET">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="year">Tahun</label>
-                            <select name="year" id="year" class="select2 form-control" required>
-                                <option value="">Pilih tahun</option>
-                                @foreach ($periode->sortByDesc('year')->values() as $item)
-
-                                <option value="{{ $item->year }}">{{ $item->year }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Filter</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Filter End-->
+@include('laporan.grand-total.modal')
 @endsection

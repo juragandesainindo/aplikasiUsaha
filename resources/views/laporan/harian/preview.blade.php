@@ -17,8 +17,8 @@
                         {{ $periode->datausaha->nama_usaha }}
                     </div>
                     <div class="btn-group">
-                        <a href="{{ url('laporan-harian') }}" class="btn btn-outline-secondary btn-sm"><i
-                                class="fas fa-backspace"></i>
+                        <a href="{{ route('laporan-harian.show',['id'=>$periode->datausaha->id,'slug'=>$periode->datausaha->slug]) }}"
+                            class="btn btn-outline-secondary btn-sm"><i class="fas fa-backspace"></i>
                             Kembali</a>
                         <a href="{{ route('laporan-harian.cetak',['id'=>$periode->id,'slug'=>$periode->slug]) }}"
                             class="btn btn-success btn-sm" target="_blank"><i class="fas fa-print"></i> &nbsp;Print

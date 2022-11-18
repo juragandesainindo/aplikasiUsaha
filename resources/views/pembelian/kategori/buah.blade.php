@@ -19,10 +19,9 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Harga Super (Rp)</label>
-                                <input type="number" min="1" name="harga_super" value="{{ old('harga_super') }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                <input type="text" name="harga_super" value="{{ old('harga_super') }}"
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
+
                             </div>
                         </div>
                         <div class="col-6">
@@ -30,9 +29,8 @@
                             <div class="form-group">
                                 <label>Tonase Super (Kg)</label>
                                 <input type="text" name="tonase_super" value="{{ old('tonase_super') }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
+
                             </div>
                         </div>
                     </div>
@@ -41,18 +39,16 @@
                             <div class="form-group">
                                 <label>Harga Bulat (Rp)</label>
                                 <input type="text" name="harga_bulat" value="{{ old('harga_bulat') }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Tonase Bulat (Kg)</label>
                                 <input type="text" name="tonase_bulat" value="{{ old('tonase_bulat') }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
+
                             </div>
                         </div>
                     </div>
@@ -61,18 +57,16 @@
                             <div class="form-group">
                                 <label>Harga Sortiran (Rp)</label>
                                 <input type="text" name="harga_sortiran" value="{{ old('harga_sortiran') }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Tonase Sortiran (Kg)</label>
                                 <input type="text" name="tonase_sortiran" value="{{ old('tonase_sortiran') }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
+
                             </div>
                         </div>
                     </div>
@@ -92,8 +86,6 @@
 <!-- Modal Create End -->
 
 <!-- Modal Edit Start -->
-@switch($edit)
-@case(1)
 @foreach ($periode->pembelian as $item)
 <div class="modal fade" id="edit-{{ $item->id }}">
     <div class="modal-dialog modal-lg" role="document">
@@ -116,9 +108,8 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Harga Super (Rp)</label>
-                                <input type="number" min="1" name="harga_super" value="{{ $item->harga_super }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                <input type="text" name="harga_super" value="{{ $item->harga_super }}"
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
                             </div>
                         </div>
                         <div class="col-6">
@@ -126,8 +117,7 @@
                             <div class="form-group">
                                 <label>Tonase Super (Kg)</label>
                                 <input type="text" name="tonase_super" value="{{ $item->tonase_super }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
                             </div>
                         </div>
                     </div>
@@ -136,16 +126,14 @@
                             <div class="form-group">
                                 <label>Harga Bulat (Rp)</label>
                                 <input type="text" name="harga_bulat" value="{{ $item->harga_bulat }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Tonase Bulat (Kg)</label>
                                 <input type="text" name="tonase_bulat" value="{{ $item->tonase_bulat }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
                             </div>
                         </div>
                     </div>
@@ -154,16 +142,14 @@
                             <div class="form-group">
                                 <label>Harga Sortiran (Rp)</label>
                                 <input type="text" name="harga_sortiran" value="{{ $item->harga_sortiran }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Tonase Sortiran (Kg)</label>
                                 <input type="text" name="tonase_sortiran" value="{{ $item->tonase_sortiran }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-xs">Tanpa titik (.) dan koma (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
                             </div>
                         </div>
                     </div>
@@ -177,13 +163,9 @@
     </div>
 </div>
 @endforeach
-@break
-@endswitch
 <!-- Modal Edit End -->
 
 <!-- Modal Delete Start -->
-@switch($delete)
-@case(1)
 @foreach ($periode->pembelian as $item)
 <div class="modal fade" id="delete-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -214,8 +196,6 @@
     </div>
 </div>
 @endforeach
-@break
-@endswitch
 <!-- Modal Delete End -->
 
 <table class="table table-bordered table-striped text-center">
@@ -286,12 +266,17 @@
         <tr>
             <th colspan="3" class="text-center">Total</th>
             <th></th>
-            <th>{{ $periode->pembelian->sum('tonase_super') }}
+            <th>
+                {{ number_format($periode->pembelian->sum('tonase_super')) }}
             </th>
             <th></th>
-            <th>{{ $periode->pembelian->sum('tonase_bulat') }}</th>
+            <th>
+                {{ number_format($periode->pembelian->sum('tonase_bulat')) }}
+            </th>
             <th></th>
-            <th>{{ $periode->pembelian->sum('tonase_sortiran') }}</th>
+            <th>
+                {{ number_format($periode->pembelian->sum('tonase_sortiran')) }}
+            </th>
 
             <th>{{
                 formatRupiah($periode->pembelian->sum('total_super')) }}</th>
@@ -302,7 +287,7 @@
             <th>{{
                 formatRupiah($periode->pembelian->sum('total_biaya_beli')) }}</th>
             <th>{{
-                $periode->pembelian->sum('total_tonase_beli') }}</th>
+                number_format($periode->pembelian->sum('total_tonase_beli')) }}</th>
         </tr>
     </tfoot>
 </table>

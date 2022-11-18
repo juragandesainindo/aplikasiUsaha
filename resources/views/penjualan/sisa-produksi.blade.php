@@ -12,14 +12,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Terjual</label>
-                        <input type="number" name="tonase_sisa_terjual" value="{{ old('tonase_sisa_terjual') }}"
-                            class="form-control" required placeholder="200">
+                        <input type="text" name="tonase_sisa_terjual" value="{{ old('tonase_sisa_terjual') }}"
+                            class="form-control rupiah" required placeholder="200">
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" value="{{ old('harga') }}" class="form-control" required
+                        <input type="text" name="harga" value="{{ old('harga') }}" class="form-control rupiah" required
                             placeholder="2000">
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
                     </div>
 
                     <input type="hidden" name="periode_id" value="{{ $periode->id }}">

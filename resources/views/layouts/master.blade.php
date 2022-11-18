@@ -54,6 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
@@ -145,10 +146,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- jQuery -->
     <script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dist/dist/js/jquery.mask.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ChartJS -->
-    {{-- <script src="{{ asset('dist/plugins/chart.js/Chart.min.js') }}"></script> --}}
     <!-- Select2 -->
     <script src="{{ asset('dist/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- DataTables  & Plugins -->
@@ -169,20 +169,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    {{-- <script src="{{ asset('dist/dist/js/demo.js') }}"></script> --}}
     <script src="{{ asset('dist/dist/js/pages/dashboard3.js') }}"></script>
 
-
+    <script>
+        $(document).ready(function(){
+            $('.rupiah').mask('000.000.000.000.000', {reverse:true});
+            $('.hp').mask('0000-0000-00000');
+        });
+    </script>
     <script>
         $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+            //Initialize Select2 Elements
+            $('.select2').select2()
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-    theme: 'bootstrap4'
-    })
-    })
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+            theme: 'bootstrap4'
+            });
+        });
+
+        
     </script>
 
     @yield('js')

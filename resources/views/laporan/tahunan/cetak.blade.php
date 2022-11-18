@@ -41,6 +41,7 @@
         td,
         p {
             font-size: 10pt;
+            padding: 5px;
         }
 
         .text-left {
@@ -53,7 +54,7 @@
 
         .text-right {
             text-align: right;
-            padding-right: 2px;
+            padding-right: 8px;
         }
     </style>
 </head>

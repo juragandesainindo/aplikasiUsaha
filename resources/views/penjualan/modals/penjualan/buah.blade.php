@@ -26,15 +26,13 @@
                     </div>
                     <div class="form-group">
                         <label>Tonase Jual (Kg)</label>
-                        <input type="number" min="1" name="tonase_jual" value="{{ old('tonase_jual') }}"
-                            class="form-control" placeholder="contoh : 181" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="tonase_jual" value="{{ old('tonase_jual') }}"
+                            class="form-control rupiah" placeholder="contoh : 181" required>
                     </div>
                     <div class="form-group">
                         <label>Harga Jual (Rp)</label>
-                        <input type="number" min="1" name="harga_jual" value="{{ old('harga_jual') }}"
-                            class="form-control" placeholder="contoh : 3000" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="harga_jual" value="{{ old('harga_jual') }}" class="form-control rupiah"
+                            placeholder="contoh : 3000" required>
                     </div>
 
                     <input type="hidden" name="periode_id" value="{{ $periode->id }}">
@@ -74,15 +72,13 @@
                     </div>
                     <div class="form-group">
                         <label>Tonase Jual (Kg)</label>
-                        <input type="number" name="tonase_jual" value="{{ $item->tonase_jual }}" class="form-control"
-                            placeholder="contoh : 181" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="tonase_jual" value="{{ $item->tonase_jual }}"
+                            class="form-control rupiah" placeholder="contoh : 181" required>
                     </div>
                     <div class="form-group">
                         <label>Harga Jual (Rp)</label>
-                        <input type="number" min="1" name="harga_jual" value="{{ $item->harga_jual }}"
-                            class="form-control" placeholder="contoh : 3000" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="harga_jual" value="{{ $item->harga_jual }}" class="form-control rupiah"
+                            placeholder="contoh : 3000" required>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -17,9 +17,8 @@
                     </div>
                     <div class="form-group">
                         <label>Jumlah Biaya (Rp)</label>
-                        <input type="number" min="1" name="jumlah_biaya" value="{{ old('jumlah_biaya') }}"
-                            class="form-control" placeholder="contoh : 3000" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="jumlah_biaya" value="{{ old('jumlah_biaya') }}"
+                            class="form-control rupiah" placeholder="contoh : 3000" required>
                     </div>
 
                     <input type="hidden" name="periode_id" value="{{ $periode->id }}">
@@ -59,9 +58,8 @@
                     </div>
                     <div class="form-group">
                         <label>Jumlah Biaya (Rp)</label>
-                        <input type="number" min="1" name="jumlah_biaya" value="{{ $item->jumlah_biaya }}"
-                            class="form-control" placeholder="contoh : 3000" required>
-                        <span class="text-danger text-sm">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="jumlah_biaya" value="{{ $item->jumlah_biaya }}"
+                            class="form-control rupiah" placeholder="contoh : 3000" required>
                     </div>
                 </div>
                 <div class="modal-footer">

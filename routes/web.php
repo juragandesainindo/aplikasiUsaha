@@ -38,10 +38,6 @@ use Illuminate\Support\Facades\Route;
 // #################### Menu Utama ####################
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-// Route::get('usaha', Usaha::class);
-// Route::get('periodes', Periode::class);
-// Route::get('periodes/{id}', PeriodeShow::class);
-
 Route::resource('data-usaha', DatausahaController::class);
 
 Route::get('periode', [PeriodeController::class, 'index']);
@@ -98,16 +94,4 @@ Route::get('laporan-tahunan-cetak/{id}', [TahunanController::class, 'cetak'])->n
 
 // #################### Laporan Grand Total ####################
 Route::get('laporan-grand-total', [GrandTotalController::class, 'index'])->name('laporan-grand-total.index');
-Route::get('laporan-grand-total-show', [GrandTotalController::class, 'show'])->name('laporan-grand-total.show');
 Route::get('laporan-grand-total-cetak', [GrandTotalController::class, 'cetak'])->name('laporan-grand-total-cetak.cetak');
-
-
-// Route::get('category', function () {
-//     $category = App\Models\Category::all();
-//     return view('welcome2', ['category' => $category]);
-// });
-
-// Route::get('getCourse/{id}', function ($id) {
-//     $course = App\Models\Course::where('category_id', $id)->get();
-//     return response()->json($course);
-// });

@@ -31,14 +31,20 @@
             background-color: #DAEEF3;
         }
 
+        td {
+            padding: 0px 5px;
+        }
+
         th,
         td,
         p {
             font-size: 10pt;
+            padding: 5px;
         }
 
         .text-left {
             text-align: left;
+            padding-left: 8px;
         }
 
         .text-center {
@@ -47,15 +53,17 @@
 
         .text-right {
             text-align: right;
-            padding-right: 2px;
+            padding-right: 8px;
         }
     </style>
 </head>
 
-<body onload="window.print()">
+<body>
 
     <h1>LAPORAN GRAND TOTAL</h1>
-    <div class="judul">Periode {{ $year }}</div>
+    <div class="judul">
+        <strong>Periode {{ request()->print }}</strong>
+    </div>
     <table border="1">
         <thead>
             <tr>
@@ -66,54 +74,45 @@
                 <th>Total Laba</th>
             </tr>
         </thead>
-        <tbody class="text-center">
+        <tbody>
             @php
             $no=1;
             @endphp
-            @foreach ($periode as $item)
-            @foreach ($item->take(1) as $usaha)
-            @if ($usaha->datausaha->kategori == 'buah')
+            @foreach ($usahas as $item)
             <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $usaha->datausaha->nama_usaha }}</td>
-                <td>{{ formatRupiah($pendapatanBuah) }}</td>
-                <td>{{ formatRupiah($biayaBuah) }}</td>
-                <td>{{ formatRupiah($labaBuah) }}</td>
+                <td class="text-center" width="10%">{{ $no++ }}</td>
+                <td class="text-left">{{ $item->nama_usaha }}</td>
+                <td class="text-right">
+
+                    {{
+                    formatRupiahPdf($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
+                    }}
+                </td>
+                <td class="text-right">
+                    {{ formatRupiahPdf($item->biaya->sum('jumlah_biaya') +
+                    $item->gaji->sum('gaji')) }}
+                </td>
+                <td class="text-right">
+                    {{
+                    formatRupiahPdf(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli')-($item->biaya->sum('jumlah_biaya')
+                    + $item->gaji->sum('gaji'))))
+                    }}
+                </td>
+
             </tr>
-            @elseif ($usaha->datausaha->kategori == 'peternakan')
-            <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $usaha->datausaha->nama_usaha }}</td>
-                <td>{{ formatRupiah($pendapatanTernak) }}</td>
-                <td>{{ formatRupiah($biayaTernak) }}</td>
-                <td>{{ formatRupiah($labaTernak) }}</td>
-            </tr>
-            @elseif ($usaha->datausaha->kategori == 'dagang')
-            <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $usaha->datausaha->nama_usaha }}</td>
-                <td>{{ formatRupiah($pendapatanDagang) }}</td>
-                <td>{{ formatRupiah($biayaDagang) }}</td>
-                <td>{{ formatRupiah($labaDagang) }}</td>
-            </tr>
-            @elseif ($usaha->datausaha->kategori == 'kebun')
-            <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $usaha->datausaha->nama_usaha }}</td>
-                <td>{{ formatRupiah($pendapatanKebun) }}</td>
-                <td>{{ formatRupiah($biayaKebun) }}</td>
-                <td>{{ formatRupiah($labaKebun) }}</td>
-            </tr>
-            @endif
-            @endforeach
             @endforeach
         </tbody>
         <tfoot>
-            <th></th>
-            <th>Total</th>
-            <th>{{ formatRupiah($pendapatanTotal) }}</th>
-            <th>{{ formatRupiah($biayaTotal) }}</th>
-            <th>{{ formatRupiah($labaTotal) }}</th>
+            <th colspan="2" class="text-center">Total</th>
+            <th class="text-right">
+                {{ formatRupiahPdf($pendapatanTotal) }}
+            </th>
+            <th class="text-right">
+                {{ formatRupiahPdf($biayaTotal) }}
+            </th>
+            <th class="text-right">
+                {{ formatRupiahPdf($totalLaba) }}
+            </th>
         </tfoot>
     </table>
 
@@ -125,7 +124,6 @@
         <tr>
             <td>dibuat oleh:</td>
         </tr>
-        <br><br><br>
         <tr>
             <td><strong>SYARIF FATAHILLAH</strong></td>
         </tr>

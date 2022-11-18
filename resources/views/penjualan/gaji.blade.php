@@ -12,9 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Gaji</label>
-                        <input type="number" min="1" name="gaji" value="{{ old('gaji') }}" class="form-control"
-                            required>
-                        <span class="text-sm text-danger">Tanpa titik (.) dan koma (,)</span>
+                        <input type="text" name="gaji" value="{{ old('gaji') }}" class="form-control rupiah" required>
                     </div>
 
                     <input type="hidden" name="periode_id" value="{{ $periode->id }}">

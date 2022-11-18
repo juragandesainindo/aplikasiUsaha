@@ -62,7 +62,30 @@
                                 <div class="pb-20 pd-20">
                                     <div class="table-responsive">
                                         @if ($usaha->kategori == 'buah')
-                                        @include('laporan.tahunan.showKategori.buah')
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background: #DAEEF3;">
+                                                <tr>
+                                                    <th rowspan="2">Bulan</th>
+                                                    <th colspan="2">Total Buah (Kg)</th>
+                                                    <th colspan="2">Total (Rp)</th>
+                                                    <th rowspan="2">Pendapatan</th>
+                                                    <th rowspan="2">Biaya Produksi</th>
+                                                    <th rowspan="2">Total Laba</th>
+                                                    <th rowspan="2">Selisih</th>
+                                                    <th rowspan="2">Terjual Lagi</th>
+                                                    <th rowspan="2">Sortir</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Pembelian</th>
+                                                    <th>Penjualan</th>
+                                                    <th>Pembelian</th>
+                                                    <th>Penjualan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @include('laporan.tahunan.showKategori.buah')
+                                            </tbody>
+                                        </table>
                                         @else
                                         @include('laporan.tahunan.showKategori.dagang')
                                         @endif
@@ -92,7 +115,6 @@
                 </button>
             </div>
             <form action="{{ route('laporan-tahunan.show',$usaha->id) }}" method="GET">
-                @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -134,7 +156,6 @@
                 </button>
             </div>
             <form action="{{ route('laporan-tahunan.cetak',$usaha->id) }}" method="GET" target="_blank">
-                @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">

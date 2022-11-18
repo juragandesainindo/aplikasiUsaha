@@ -25,18 +25,14 @@
                             <div class="form-group">
                                 <label>Qty Beli (Pcs)</label>
                                 <input type="text" name="tonase_super" value="{{ old('tonase_super') }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-sm">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Harga Beli (Rp)</label>
-                                <input type="number" min="1" name="harga_super" value="{{ old('harga_super') }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-sm">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                <input type="text" name="harga_super" value="{{ old('harga_super') }}"
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
                             </div>
                         </div>
                     </div>
@@ -56,8 +52,6 @@
 <!-- Modal Create End -->
 
 <!-- Modal Edit Start -->
-@switch($edit)
-@case(1)
 @foreach ($periode->pembelian as $item)
 <div class="modal fade" id="edit-{{ $item->id }}">
     <div class="modal-dialog modal-lg" role="document">
@@ -86,18 +80,14 @@
                             <div class="form-group">
                                 <label>Qty Beli (Pcs)</label>
                                 <input type="text" name="tonase_super" value="{{ $item->tonase_super }}"
-                                    class="form-control" placeholder="contoh : 181" required>
-                                <span class="text-danger text-sm">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                    class="form-control rupiah" placeholder="contoh : 181" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Harga Beli (Rp)</label>
-                                <input type="number" min="1" name="harga_super" value="{{ $item->harga_super }}"
-                                    class="form-control" placeholder="contoh : 3000" required>
-                                <span class="text-danger text-sm">Tanpa titik (.) dan koma
-                                    (,)</span>
+                                <input type="text" name="harga_super" value="{{ $item->harga_super }}"
+                                    class="form-control rupiah" placeholder="contoh : 3000" required>
                             </div>
                         </div>
                     </div>
@@ -111,13 +101,9 @@
     </div>
 </div>
 @endforeach
-@break
-@endswitch
 <!-- Modal Edit End -->
 
 <!-- Modal Delete Start -->
-@switch($delete)
-@case(1)
 @foreach ($periode->pembelian as $item)
 <div class="modal fade" id="delete-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -148,8 +134,6 @@
     </div>
 </div>
 @endforeach
-@break
-@endswitch
 <!-- Modal Delete End -->
 
 <table class="table table-bordered table-striped text-center">
@@ -172,14 +156,14 @@
             <td>{{ $item->nama_barang }}</td>
             <td>{{ number_format($item->tonase_super) }}</td>
             <td>{{ formatRupiah($item->harga_super) }}</td>
-            <td>{{ formatRupiah($item->total_super) }}</td>
+            <td>{{ formatRupiah($item->total_biaya_beli) }}</td>
             <td>
                 <div class="btn-group btn-group-sm">
                     <a class="btn btn-warning btn-sm" href="#" data-toggle="modal" data-target="#edit-{{ $item->id }}"
-                        type="button"><i class="fas fa-edit"></i>
+                        type="button"><i class="fas fa-edit"></i>&nbsp; Edit
                     </a>
                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#delete-{{ $item->id }}"
-                        type="button"><i class="fas fa-trash"></i>
+                        type="button"><i class="fas fa-trash"></i>&nbsp; Hapus
                     </a>
                 </div>
             </td>
@@ -191,7 +175,7 @@
             <th colspan="3" class="text-center">Total</th>
             <th>{{ $periode->pembelian->sum('tonase_super') }}</th>
             <th>{{ formatRupiah($periode->pembelian->sum('harga_super')) }}</th>
-            <th>{{ formatRupiah($periode->pembelian->sum('total_super')) }}</th>
+            <th>{{ formatRupiah($periode->pembelian->sum('total_biaya_beli')) }}</th>
             <th></th>
         </tr>
     </tfoot>

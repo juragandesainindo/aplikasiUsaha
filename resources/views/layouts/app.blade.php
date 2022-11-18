@@ -39,7 +39,7 @@
     {{-- @livewireScripts() --}}
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse" style="height: auto;">
 
     @include('sweetalert::alert')
 
@@ -62,6 +62,12 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary btn-sm text-white"
+                        href="{{ asset('dist/dist/panduan-aplikasi-usaha.pdf') }}" target="_blank">
+                        Panduan Aplikasi
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -206,6 +212,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('dist/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dist/dist/js/jquery.mask.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('dist/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -253,6 +260,27 @@
     {{-- <script src="{{ asset('dist/dist/js/demo.js') }}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/dist/js/pages/dashboard.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+                $('.rupiah').mask('000.000.000.000.000', {reverse:true});
+                $('.tahun').mask('0000');
+            });
+    </script>
+
+    <script>
+        $(function () {
+                //Initialize Select2 Elements
+                $('.select2').select2()
+    
+                //Initialize Select2 Elements
+                $('.select2bs4').select2({
+                theme: 'bootstrap4'
+                });
+            });
+    
+            
+    </script>
 
     @yield('js')
     {{-- @livewireScripts()

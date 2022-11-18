@@ -1,6 +1,6 @@
 @if ($periode->datausaha->kategori == 'buah')
 @include('penjualan.modals.penjualan.buah')
-<a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanBuah" type="button">Tambah
+<a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanBuah" type="button">Tambah
     Penjualan {{ $periode->datausaha->nama_usaha }}</a>
 <div class="table-responsive">
     <table id="example1" class="table table-bordered table-striped text-center">
@@ -48,7 +48,7 @@
 </div>
 @elseif ($periode->datausaha->kategori == 'dagang')
 @include('penjualan.modals.penjualan.dagang')
-<a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanDagang" type="button">Tambah
+<a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanDagang" type="button">Tambah
     Penjualan {{ $periode->datausaha->nama_usaha }}</a>
 <div class="table-responsive">
     <table id="example1" class="table table-bordered table-striped text-center">
@@ -98,7 +98,7 @@
 </div>
 @elseif ($periode->datausaha->kategori == 'peternakan')
 @include('penjualan.modals.penjualan.ternak')
-<a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanTernak" type="button">Tambah
+<a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanTernak" type="button">Tambah
     Penjualan {{ $periode->datausaha->nama_usaha }}</a>
 <div class="table-responsive">
     <table id="example1" class="table table-bordered table-striped text-center">
@@ -146,7 +146,7 @@
 </div>
 @elseif ($periode->datausaha->kategori == 'kebun')
 @include('penjualan.modals.penjualan.kebun')
-<a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanKebun" type="button">Tambah
+<a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createPenjualanKebun" type="button">Tambah
     Penjualan {{ $periode->datausaha->nama_usaha }}</a>
 <div class="table-responsive">
     <table id="example1" class="table table-bordered table-striped text-center">

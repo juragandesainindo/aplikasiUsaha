@@ -8,6 +8,10 @@
             font-family: 'Cambria', sans-serif;
         }
 
+        @page {
+            padding: 10px;
+        }
+
         h1 {
             font-size: 12pt;
             font-weight: bold;
@@ -44,6 +48,7 @@
         tbody tr td,
         tfoot tr th {
             font-size: 10pt;
+            padding: 5px;
         }
 
         .text-left {

@@ -17,12 +17,12 @@
             <td>{{ \Carbon\Carbon::parse($item->tanggal_awal)->isoFormat('DD') }} - {{
                 \Carbon\Carbon::parse($item->tanggal_akhir)->isoFormat('DD/MM/Y') }}
             </td>
-            <td>{{ formatRupiah($item->pembelian->sum('total_super')) }}</td>
+            <td>{{ formatRupiah($item->pembelian->sum('total_biaya_beli')) }}</td>
             <td>{{ formatRupiah($item->penjualan->sum('total_jual')) }}</td>
-            <td>{{ formatRupiah($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_super')) }}</td>
+            <td>{{ formatRupiah($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli')) }}</td>
             <td>{{ formatRupiah($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')) }}</td>
             <td>{{
-                formatRupiah(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_super'))-($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')))
+                formatRupiah(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')))
                 }}</td>
         </tr>
         @empty
@@ -34,11 +34,11 @@
     <tfoot>
         <tr>
             <th colspan="2" class="text-center">Total</th>
-            <th>{{ formatRupiah($pembelianDagang) }}</th>
+            <th>{{ formatRupiah($totalPembelian) }}</th>
             <th>{{ formatRupiah($totalPenjualan) }}</th>
-            <th>{{ formatRupiah($pendapatanDagang) }}</th>
-            <th>{{ formatRupiah($biayaProduksi) }}</th>
-            <th>{{ formatRupiah($labaKotor) }}</th>
+            <th>{{ formatRupiah($pendapatan) }}</th>
+            <th>{{ formatRupiah($operasional) }}</th>
+            <th>{{ formatRupiah($total) }}</th>
         </tr>
     </tfoot>
 </table>

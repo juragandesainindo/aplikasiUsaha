@@ -10,102 +10,390 @@
         </tr>
     </thead>
     <tbody class="text-center">
+        @forelse($jan as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Januari</td>
-            <td>{{ formatRupiah($pembelianDagangJan) }}</td>
-            <td>{{ formatRupiah($totalPenjualanJan) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangJan) }}</td>
-            <td>{{ formatRupiah($biayaProduksiJan) }}</td>
-            <td>{{ formatRupiah($labaKotorJan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Januari</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($feb as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Februari</td>
-            <td>{{ formatRupiah($pembelianDagangFeb) }}</td>
-            <td>{{ formatRupiah($totalPenjualanFeb) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangFeb) }}</td>
-            <td>{{ formatRupiah($biayaProduksiFeb) }}</td>
-            <td>{{ formatRupiah($labaKotorFeb) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Februari</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($mar as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Maret</td>
-            <td>{{ formatRupiah($pembelianDagangMar) }}</td>
-            <td>{{ formatRupiah($totalPenjualanMar) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangMar) }}</td>
-            <td>{{ formatRupiah($biayaProduksiMar) }}</td>
-            <td>{{ formatRupiah($labaKotorMar) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Maret</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($apr as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>April</td>
-            <td>{{ formatRupiah($pembelianDagangApr) }}</td>
-            <td>{{ formatRupiah($totalPenjualanApr) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangApr) }}</td>
-            <td>{{ formatRupiah($biayaProduksiApr) }}</td>
-            <td>{{ formatRupiah($labaKotorApr) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>April</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($mei as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Mei</td>
-            <td>{{ formatRupiah($pembelianDagangMei) }}</td>
-            <td>{{ formatRupiah($totalPenjualanMei) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangMei) }}</td>
-            <td>{{ formatRupiah($biayaProduksiMei) }}</td>
-            <td>{{ formatRupiah($labaKotorMei) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Mei</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($jun as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Juni</td>
-            <td>{{ formatRupiah($pembelianDagangJun) }}</td>
-            <td>{{ formatRupiah($totalPenjualanJun) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangJun) }}</td>
-            <td>{{ formatRupiah($biayaProduksiJun) }}</td>
-            <td>{{ formatRupiah($labaKotorJun) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Juni</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($jul as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Juli</td>
-            <td>{{ formatRupiah($pembelianDagangJul) }}</td>
-            <td>{{ formatRupiah($totalPenjualanJul) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangJul) }}</td>
-            <td>{{ formatRupiah($biayaProduksiJul) }}</td>
-            <td>{{ formatRupiah($labaKotorJul) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Juli</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($aug as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Agustus</td>
-            <td>{{ formatRupiah($pembelianDagangAug) }}</td>
-            <td>{{ formatRupiah($totalPenjualanAug) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangAug) }}</td>
-            <td>{{ formatRupiah($biayaProduksiAug) }}</td>
-            <td>{{ formatRupiah($labaKotorAug) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Agustus</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($sep as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>September</td>
-            <td>{{ formatRupiah($pembelianDagangSep) }}</td>
-            <td>{{ formatRupiah($totalPenjualanSep) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangSep) }}</td>
-            <td>{{ formatRupiah($biayaProduksiSep) }}</td>
-            <td>{{ formatRupiah($labaKotorSep) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>September</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($okt as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Oktober</td>
-            <td>{{ formatRupiah($pembelianDagangOkt) }}</td>
-            <td>{{ formatRupiah($totalPenjualanOkt) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangOkt) }}</td>
-            <td>{{ formatRupiah($biayaProduksiOkt) }}</td>
-            <td>{{ formatRupiah($labaKotorOkt) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Oktober</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($nov as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>November</td>
-            <td>{{ formatRupiah($pembelianDagangNov) }}</td>
-            <td>{{ formatRupiah($totalPenjualanNov) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangNov) }}</td>
-            <td>{{ formatRupiah($biayaProduksiNov) }}</td>
-            <td>{{ formatRupiah($labaKotorNov) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>November</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
+        @forelse($des as $item)
+        @php
+        $tonaseBeli = $item->pembelian->sum('total_tonase_beli');
+        $tonaseJual = $item->penjualan->sum('tonase_jual');
+        $biayaBeli = $item->pembelian->sum('total_biaya_beli');
+        $biayaJual = $item->penjualan->sum('total_jual');
+        $pendapatan = $biayaJual - $biayaBeli;
+        $operasional = $item->biaya->sum('jumlah_biaya') +
+        $item->gaji->sum('gaji');
+        $total = $pendapatan - $operasional;
+        $selisih = $tonaseJual - $tonaseBeli;
+        $terjualLagi = $item->sisa->sum('tonase_sisa_terjual');
+        $sortir = $selisih - $terjualLagi;
+        @endphp
         <tr>
             <td>Desember</td>
-            <td>{{ formatRupiah($pembelianDagangDes) }}</td>
-            <td>{{ formatRupiah($totalPenjualanDes) }}</td>
-            <td>{{ formatRupiah($pendapatanDagangDes) }}</td>
-            <td>{{ formatRupiah($biayaProduksiDes) }}</td>
-            <td>{{ formatRupiah($labaKotorDes) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaBeli) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($biayaJual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatan) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($operasional) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($total) }}</td>
         </tr>
+        @empty
+        <tr>
+            <td>Desember</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+        </tr>
+        @endforelse
     </tbody>
     <tfoot>
         <tr>
@@ -113,11 +401,11 @@
         </tr>
         <tr>
             <th>Grand Total</th>
-            <th>{{ formatRupiah($pembelianDagangTotal) }}</th>
-            <th>{{ formatRupiah($totalPenjualanTotal) }}</th>
-            <th>{{ formatRupiah($pendapatanDagangTotal) }}</th>
-            <th>{{ formatRupiah($biayaProduksiTotal) }}</th>
-            <th>{{ formatRupiah($labaKotorTotal) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($biayaBeliTotal) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($biayaJualTotal) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($pendapatanTotal) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($operasionalTotal) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalTotal) }}</th>
         </tr>
     </tfoot>
 </table>
@@ -134,7 +422,6 @@
     <tr>
         <td>dibuat oleh:</td>
     </tr>
-    <br><br><br>
     <tr>
         <td><strong>SYARIF FATAHILLAH</strong></td>
     </tr>

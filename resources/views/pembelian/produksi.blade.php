@@ -12,11 +12,11 @@
             <div class="row mb-2">
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="m-0">Pembelian {{ $periode->tanggal }} ({{
+                        <h1 class="m-0">Pembelian ({{
                             $periode->datausaha->nama_usaha }})</h1>
                         <div class="btn-group">
-                            <a href="{{ url('pembelian') }}" class="btn btn-secondary btn-sm"><i
-                                    class="fas fa-backspace"></i>
+                            <a href="{{ route('pembelian-periode', ['id'=>$periode->datausaha->id, 'slug'=>$periode->datausaha->slug]) }}"
+                                class="btn btn-secondary btn-sm"><i class="fas fa-backspace"></i>
                                 Kembali</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create"
                                 type="button">
@@ -36,6 +36,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            Periode {{ formatD($periode->tanggal_awal) }} s/d {{ formatTgl($periode->tanggal_akhir) }}
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 @if ($periode->datausaha->kategori == 'buah')

@@ -17,7 +17,9 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('penjualan') }}"><i class="fas fa-backspace"></i>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('penjualan-periode',['id'=>$periode->datausaha->id, 'slug'=>$periode->datausaha->slug]) }}"><i
+                                    class="fas fa-backspace"></i>
                                 Kembali</a></li>
                     </ol>
                 </div>

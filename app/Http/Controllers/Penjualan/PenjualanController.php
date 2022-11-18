@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Penjualan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Penjualan\BiayaEditRequest;
+use App\Http\Requests\Penjualan\BiayaRequest;
 use App\Models\Datausaha;
 use App\Models\Periode;
 use App\Models\Biaya;
@@ -89,26 +91,24 @@ class PenjualanController extends Controller
 
 
 
-    public function storeBiaya(Request $request)
+    public function storeBiaya(BiayaRequest $request)
     {
-        Biaya::create([
-            'title_biaya'       => $request->title_biaya,
-            'jumlah_biaya'      => $request->jumlah_biaya,
-            'periode_id'        => $request->periode_id,
-            'datausaha_id'      => $request->datausaha_id
-        ]);
+        $input = $request->validated();
+        $input['jumlah_biaya'] = str_replace('.', '', $input['jumlah_biaya']);
+
+        Biaya::create($input);
 
         Alert::success('Selamat', 'Tambah biaya produksi berhasil');
         return back();
     }
 
-    public function updateBiaya(Request $request, $id)
+    public function updateBiaya(BiayaEditRequest $request, $id)
     {
         $biaya = Biaya::findOrFail($id);
-        $biaya->update([
-            'title_biaya'       => $request->title_biaya,
-            'jumlah_biaya'      => $request->jumlah_biaya,
-        ]);
+        $input = $request->validated();
+        $input['jumlah_biaya'] = str_replace('.', '', $input['jumlah_biaya']);
+
+        $biaya->update($input);
 
         Alert::warning('Selamat', 'Edit biaya berhasil');
         return back();
@@ -124,11 +124,14 @@ class PenjualanController extends Controller
 
     public function storeGaji(Request $request)
     {
-        Gaji::create([
-            'gaji'       => $request->gaji,
-            'periode_id'        => $request->periode_id,
-            'datausaha_id'      => $request->datausaha_id
+        $input = $request->validate([
+            'gaji'       => 'nullable',
+            'periode_id'        => 'required',
+            'datausaha_id'      => 'required',
         ]);
+        $input['gaji'] = str_replace('.', '', $input['gaji']);
+
+        Gaji::create($input);
 
         Alert::success('Selamat', 'Tambah gaji berhasil');
         return back();
@@ -137,9 +140,12 @@ class PenjualanController extends Controller
     public function updateGaji(Request $request, $id)
     {
         $biaya = Gaji::findOrFail($id);
-        $biaya->update([
-            'gaji'       => $request->gaji,
+        $input = $request->validate([
+            'gaji'       => 'nullable',
         ]);
+        $input['gaji'] = str_replace('.', '', $input['gaji']);
+
+        $biaya->update($input);
 
         Alert::warning('Selamat', 'Edit gaji berhasil');
         return back();
@@ -155,13 +161,18 @@ class PenjualanController extends Controller
 
     public function storeSisa(Request $request)
     {
-        Sisaproduksi::create([
-            'tonase_sisa_terjual'   => $request->tonase_sisa_terjual,
-            'harga'                 => $request->harga,
-            'total_sisa_terjual'    => $request->tonase_sisa_terjual * $request->harga,
-            'periode_id'            => $request->periode_id,
-            'datausaha_id'          => $request->datausaha_id
+        $input = $request->validate([
+            'tonase_sisa_terjual'   => 'nullable',
+            'harga'                 => 'nullable',
+            'total_sisa_terjual'    => 'nullable',
+            'periode_id'            => 'required',
+            'datausaha_id'          => 'required',
         ]);
+        $input['tonase_sisa_terjual'] = str_replace('.', '', $input['tonase_sisa_terjual']);
+        $input['harga'] = str_replace('.', '', $input['harga']);
+        $input['total_sisa_terjual'] = $input['tonase_sisa_terjual'] * $input['harga'];
+
+        Sisaproduksi::create($input);
 
         Alert::success('Selamat', 'Tambah sortir produksi berhasil');
         return back();

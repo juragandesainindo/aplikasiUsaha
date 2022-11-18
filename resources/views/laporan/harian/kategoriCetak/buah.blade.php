@@ -29,22 +29,22 @@
         <tr class="pembelian">
             <td style="text-align: center;">{{ ++$key }}</td>
             <td>{{ $item->nama_supplier }}</td>
-            <td class="text-right">Rp.&nbsp;{{ number_format($item->harga_super) }}</td>
-            <td class="text-center">{{ $item->tonase_super }}</td>
-            <td class="text-right">Rp.&nbsp;{{ number_format($item->harga_bulat) }}</td>
-            <td class="text-center">{{ $item->tonase_bulat }}</td>
-            <td class="text-right">Rp.&nbsp;{{ number_format($item->harga_sortiran) }}</td>
-            <td class="text-center">{{ $item->tonase_sortiran }}</td>
-            <td class="text-right">Rp.&nbsp;&nbsp;{{ number_format($item->total_super)
+            <td class="text-right">{{ formatRupiahPdf($item->harga_super) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->tonase_super) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->harga_bulat) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->tonase_bulat) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->harga_sortiran) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->tonase_sortiran) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->total_super)
                 }}</td>
-            <td class="text-right">Rp.&nbsp;&nbsp;{{ number_format($item->total_bulat)
+            <td class="text-right">{{ formatRupiahPdf($item->total_bulat)
                 }}</td>
-            <td class="text-right">Rp.&nbsp;&nbsp;{{
-                number_format($item->total_sortiran) }}
+            <td class="text-right">{{
+                formatRupiahPdf($item->total_sortiran) }}
             </td>
-            <td class="text-right">Rp.&nbsp;&nbsp;{{ number_format($item->total_biaya_beli)
+            <td class="text-right">{{ formatRupiahPdf($item->total_biaya_beli)
                 }}</td>
-            <td class="text-center">{{ $item->total_tonase_beli }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->total_tonase_beli) }}</td>
         </tr>
         @endforeach
     </tbody>
@@ -53,21 +53,21 @@
             <th></th>
             <th>Total</th>
             <th></th>
-            <th>{{ $tonasesuper }}</th>
+            <th class="text-right">{{ formatRupiahPdf($tonasesuper) }}</th>
             <th></th>
-            <th>{{ $tonasebulat }}</th>
+            <th class="text-right">{{ formatRupiahPdf($tonasebulat) }}</th>
             <th></th>
-            <th>{{ $tonasesortiran }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalsuper) }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalbulat) }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalsortiran) }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalbiaya) }}</th>
-            <th>{{ number_format($totaltonase) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($tonasesortiran) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalsuper) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalbulat) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalsortiran) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalbiaya) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totaltonase) }}</th>
         </tr>
         <tr class="pembelian">
             <th></th>
             <th>Grand Total</th>
-            <th colspan="10" class="text-right">{{ number_format($grandtotalbeli) }}
+            <th colspan="10" class="text-right">{{ formatRupiahPdf($grandtotalbeli) }}
             </th>
             <th></th>
         </tr>
@@ -93,10 +93,10 @@
         <tr>
             <td class="text-center">{{ ++$key }}</td>
             <td>{{ $item->nama_penjual }}</td>
-            <td class="text-center">Rp.&nbsp;&nbsp;{{ number_format($item->harga_jual) }}
+            <td class="text-right">{{ formatRupiahPdf($item->harga_jual) }}
             </td>
-            <td class="text-center">{{ number_format($item->tonase_jual) }}</td>
-            <td class="text-right">Rp.&nbsp;&nbsp;{{ number_format($item->total_jual) }}
+            <td class="text-right">{{ formatRupiahPdf($item->tonase_jual) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->total_jual) }}
             </td>
             <td></td>
         </tr>
@@ -107,8 +107,8 @@
             <th></th>
             <th>Total</th>
             <th></th>
-            <th>{{ $tonasejual }}</th>
-            <th class="text-right">Rp.&nbsp;{{ number_format($totaljual) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($tonasejual) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totaljual) }}</th>
             <th></th>
         </tr>
     </tfoot>
@@ -130,13 +130,13 @@
         <tr>
             <td class="text-center">1</td>
             <td>Harga Rata-Rata Perkilogram</td>
-            <td class="text-right">{{ number_format($hargaratarata) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($hargaratarata) }}</td>
             <td></td>
         </tr>
         <tr>
             <td class="text-center">2</td>
             <td>Selisih Tonase</td>
-            <td class="text-right">{{ number_format($selisihtonase) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($selisihtonase) }}</td>
             <td>
                 @if ($selisihtonase < 0) <span>Tidak Terjual</span>
                     @else
@@ -146,13 +146,13 @@
         <tr>
             <td class="text-center">3</td>
             <td>Selisih Harga</td>
-            <td class="text-right">Rp.&nbsp;{{ number_format($selisihharga) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($selisihharga) }}</td>
             <td></td>
         </tr>
         <tr>
             <td class="text-center">4</td>
             <td>Pendapatan Kotor Produksi</td>
-            <td class="text-right">Rp.&nbsp;{{ number_format($pendapatankotor) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($pendapatankotor) }}</td>
             <td>
                 @if ($pendapatankotor < 0) Minus @else @endif </td>
         </tr>
@@ -176,7 +176,7 @@
         <tr>
             <td class="text-center">{{ ++$key }}</td>
             <td>{{ $bi->title_biaya }}</td>
-            <td class="text-center">Rp.&nbsp;{{ number_format($bi->jumlah_biaya) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($bi->jumlah_biaya) }}</td>
             <td></td>
         </tr>
         @endforeach
@@ -185,7 +185,7 @@
         <tr>
             <th></th>
             <th>Total Biaya</th>
-            <th class="text-center">Rp.&nbsp;{{ number_format($jumlahbiaya) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($jumlahbiaya) }}</th>
             <th></th>
         </tr>
     </tfoot>
@@ -198,7 +198,7 @@
     <thead>
         <tr>
             <th style="width: 40%;">Laba Rugi</th>
-            <th style="width:">Rp.&nbsp;{{ number_format($labarugi) }}</th>
+            <th style="width:">{{ formatRupiahPdf($labarugi) }}</th>
         </tr>
     </thead>
 </table>
@@ -214,7 +214,6 @@
     <tr>
         <td>dibuat oleh:</td>
     </tr>
-    <br><br><br>
     <tr>
         <td><strong>SYARIF FATAHILLAH</strong></td>
     </tr>

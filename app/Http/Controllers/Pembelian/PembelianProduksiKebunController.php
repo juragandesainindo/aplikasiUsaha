@@ -3,37 +3,32 @@
 namespace App\Http\Controllers\Pembelian;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pembelian\PembelianEditRequest;
+use App\Http\Requests\Pembelian\PembelianRequest;
 use App\Models\Pembelian;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PembelianProduksiKebunController extends Controller
 {
-    public function store(Request $request)
+    public function store(PembelianRequest $request)
     {
-        Pembelian::create([
-            'nama_supplier'       => $request->nama_supplier,
-            'harga_super'         => $request->harga_super,
-            'tonase_super'        => $request->tonase_super,
-            'total_super'         => $request->harga_super * $request->tonase_super,
-            'periode_id'          => $request->periode_id,
-            'datausaha_id'        => $request->datausaha_id,
+        $input = $request->validated();
+        include_once 'FormatRupiah.php';
 
-        ]);
+        Pembelian::create($input);
 
         Alert::success('Selamat', 'Tambah pembelian produksi berhasil');
         return back();
     }
 
-    public function update(Request $request, $id)
+    public function update(PembelianEditRequest $request, $id)
     {
         $produksi = Pembelian::findOrFail($id);
-        $produksi->update([
-            'nama_supplier'       => $request->nama_supplier,
-            'harga_super'         => $request->harga_super,
-            'tonase_super'        => $request->tonase_super,
-            'total_super'         => $request->harga_super * $request->tonase_super,
-        ]);
+        $input = $request->validated();
+        include_once 'FormatRupiah.php';
+
+        $produksi->update($input);
 
         Alert::warning('Selamat', 'Edit pembelian produksi berhasil');
         return back();

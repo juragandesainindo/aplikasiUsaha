@@ -25,27 +25,27 @@
             <td>{{ \Carbon\Carbon::parse($item->tanggal_awal)->isoFormat('DD') }} - {{
                 \Carbon\Carbon::parse($item->tanggal_akhir)->isoFormat('DD/MM/Y') }}
             </td>
-            <td>{{ $item->pembelian->sum('total_tonase_beli') }}</td>
-            <td>{{ $item->penjualan->sum('tonase_jual') }}</td>
-            <td>{{ formatRupiah($item->pembelian->sum('total_biaya_beli')) }}
+            <td>{{ formatRupiahPdf($item->pembelian->sum('total_tonase_beli')) }}</td>
+            <td>{{ formatRupiahPdf($item->penjualan->sum('tonase_jual')) }}</td>
+            <td>{{ formatRupiahPdf($item->pembelian->sum('total_biaya_beli')) }}
             </td>
-            <td>{{ formatRupiah($item->penjualan->sum('total_jual')) }}
+            <td>{{ formatRupiahPdf($item->penjualan->sum('total_jual')) }}
             </td>
             <td>{{
-                formatRupiah($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
+                formatRupiahPdf($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
                 }}</td>
-            <td>{{ formatRupiah($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')) }}</td>
+            <td>{{ formatRupiahPdf($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')) }}</td>
 
             <td>{{
-                formatRupiah(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')))
+                formatRupiahPdf(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')))
                 }}</td>
             <td>{{
                 $item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli')
                 }}
             </td>
-            <td>{{ $item->sisa->sum('tonase_sisa_terjual') }}</td>
+            <td>{{ formatRupiahPdf($item->sisa->sum('tonase_sisa_terjual')) }}</td>
             <td>{{
-                ($item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli'))+$item->sisa->sum('tonase_sisa_terjual')
+                formatRupiahPdf($item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli'))+$item->sisa->sum('tonase_sisa_terjual')
                 }}</td>
         </tr>
         @empty
@@ -57,16 +57,16 @@
     <tfoot>
         <tr>
             <th colspan="2" class="text-center">Total</th>
-            <th>{{ $totalTonaseBeli }}</th>
-            <th>{{ $totalTonaseJual }}</th>
-            <th>{{ formatRupiah($totalPembelian) }}</th>
-            <th>{{ formatRupiah($totalPenjualan) }}</th>
-            <th>{{ formatRupiah($pendapatan) }}</th>
-            <th>{{ formatRupiah($operasional) }}</th>
-            <th>{{ formatRupiah($total) }}</th>
-            <th>{{ $selisih }} </th>
-            <th>{{ $terjualLagi }}</th>
-            <th>{{ $sortir }}</th>
+            <th>{{ formatRupiahPdf($totalTonaseBeli) }}</th>
+            <th>{{ formatRupiahPdf($totalTonaseJual) }}</th>
+            <th>{{ formatRupiahPdf($totalPembelian) }}</th>
+            <th>{{ formatRupiahPdf($totalPenjualan) }}</th>
+            <th>{{ formatRupiahPdf($pendapatan) }}</th>
+            <th>{{ formatRupiahPdf($operasional) }}</th>
+            <th>{{ formatRupiahPdf($total) }}</th>
+            <th>{{ formatRupiahPdf($selisih) }}</th>
+            <th>{{ formatRupiahPdf($terjualLagi) }}</th>
+            <th>{{ formatRupiahPdf($sortir) }}</th>
         </tr>
     </tfoot>
 </table>

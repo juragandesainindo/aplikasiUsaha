@@ -25,29 +25,29 @@
             <td>{{ \Carbon\Carbon::parse($item->tanggal_awal)->isoFormat('DD') }} - {{
                 \Carbon\Carbon::parse($item->tanggal_akhir)->isoFormat('DD/MM/Y') }}
             </td>
-            <td>{{ $item->pembelian->sum('total_tonase_beli') }}</td>
-            <td>{{ $item->penjualan->sum('tonase_jual') }}</td>
-            <td>{{ formatRupiah($item->pembelian->sum('total_biaya_beli')) }}
+            <td class="text-right">{{ formatRupiahPdf($item->pembelian->sum('total_tonase_beli')) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->penjualan->sum('tonase_jual')) }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->pembelian->sum('total_biaya_beli')) }}
             </td>
-            <td>{{ formatRupiah($item->penjualan->sum('total_jual')) }}
+            <td class="text-right">{{ formatRupiahPdf($item->penjualan->sum('total_jual')) }}
             </td>
-            <td>{{
-                formatRupiah($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
+            <td class="text-right">{{
+                formatRupiahPdf($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))
                 }}</td>
-            <td>{{ formatRupiah($item->biaya->sum('jumlah_biaya') +
+            <td class="text-right">{{ formatRupiahPdf($item->biaya->sum('jumlah_biaya') +
                 $item->gaji->sum('gaji')) }}</td>
 
-            <td>{{
-                formatRupiah(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')
+            <td class="text-right">{{
+                formatRupiahPdf(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')
                 +
                 $item->gaji->sum('gaji'))) }}</td>
-            <td>{{
-                $item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli')
+            <td class="text-right">{{
+                formatRupiahPdf($item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli'))
                 }}
             </td>
-            <td>{{ $item->sisa->sum('tonase_sisa_terjual') }}</td>
-            <td>{{
-                ($item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli'))+$item->sisa->sum('tonase_sisa_terjual')
+            <td class="text-right">{{ formatRupiahPdf($item->sisa->sum('tonase_sisa_terjual')) }}</td>
+            <td class="text-right">{{
+                formatRupiahPdf($item->penjualan->sum('tonase_jual')-$item->pembelian->sum('total_tonase_beli'))+$item->sisa->sum('tonase_sisa_terjual')
                 }}</td>
         </tr>
         @empty
@@ -59,16 +59,16 @@
     <tfoot>
         <tr>
             <th colspan="2" class="text-center">Total</th>
-            <th>{{ $totalTonaseBeli }}</th>
-            <th>{{ $totalTonaseJual }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalPembelian) }}</th>
-            <th>Rp.&nbsp;{{ number_format($totalPenjualan) }}</th>
-            <th>Rp.&nbsp;{{ number_format($pendapatan) }}</th>
-            <th>Rp.&nbsp;{{ number_format($operasional) }}</th>
-            <th>Rp.&nbsp;{{ number_format($total) }}</th>
-            <th>{{ $selisih }} </th>
-            <th>{{ $terjualLagi }}</th>
-            <th>{{ $sortir }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalTonaseBeli) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalTonaseJual) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalPembelian) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalPenjualan) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($pendapatan) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($operasional) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($total) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($selisih )}} </th>
+            <th class="text-right">{{ formatRupiahPdf($terjualLagi) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($sortir) }}</th>
         </tr>
     </tfoot>
 </table>
@@ -81,7 +81,6 @@
     <tr>
         <td>dibuat oleh:</td>
     </tr>
-    <br><br><br>
     <tr>
         <td><strong>SYARIF FATAHILLAH</strong></td>
     </tr>

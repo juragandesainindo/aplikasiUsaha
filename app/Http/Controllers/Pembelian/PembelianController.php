@@ -30,8 +30,6 @@ class PembelianController extends Controller
         $periode = Periode::where('id', $id)->where('slug', $slug)
             ->with(['pembelian', 'datausaha'])
             ->first();
-        $edit = 1;
-        $delete = 1;
-        return view('pembelian.produksi', compact('periode', 'edit', 'delete'));
+        return view('pembelian.produksi', compact('periode'));
     }
 }

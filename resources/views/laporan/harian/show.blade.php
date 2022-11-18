@@ -91,7 +91,7 @@
                                             @else
                                             <div class="btn-group btn-group-sm">
                                                 <a href="{{ route('laporan-harian.preview',['id'=>$item->id,'slug'=>$item->slug]) }}"
-                                                    class="btn btn-primary btn-sm" target="_blank">Preview</a>
+                                                    class="btn btn-primary btn-sm">Preview</a>
                                                 <a href="{{ route('laporan-harian.cetak',['id'=>$item->id,'slug'=>$item->slug]) }}"
                                                     class="btn btn-success btn-sm" target="_blank">cetak</a>
                                             </div>

@@ -3,40 +3,42 @@
 namespace App\Http\Controllers\Penjualan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Penjualan\DagangEditRequest;
+use App\Http\Requests\Penjualan\DagangRequest;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenjualanProduksiDagangController extends Controller
 {
-    public function store(Request $request)
+    public function store(DagangRequest $request)
     {
-        Penjualan::create([
-            'nama_penjual'      => $request->nama_penjual,
-            'harga_jual'        => $request->harga_jual,
-            'tonase_jual'       => $request->tonase_jual,
-            'total_jual'        => $request->harga_jual * $request->tonase_jual,
-            'pembelian_id'        => $request->pembelian_id,
-            'periode_id'        => $request->periode_id,
-            'datausaha_id'      => $request->datausaha_id
-        ]);
+        $input = $request->validated();
+        require_once 'FormatRupiah.php';
+
+        Penjualan::create($input);
 
         Alert::success('Selamat', 'Tambah penjualan produksi berhasil');
         return back();
     }
 
-    public function update(Request $request, $id)
+    public function update(DagangEditRequest $request, $id)
     {
         $penjualan = Penjualan::findOrFail($id);
-        $penjualan->update([
-            'nama_penjual'      => $request->nama_penjual,
-            'harga_jual'        => $request->harga_jual,
-            'tonase_jual'       => $request->tonase_jual,
-            'total_jual'        => $request->harga_jual * $request->tonase_jual,
-            'pembelian_id'        => $request->pembelian_id,
-        ]);
+        $input = $request->validated();
+        require_once 'FormatRupiah.php';
+
+        $penjualan->update($input);
 
         Alert::warning('Selamat', 'Edit penjualan produksi berhasil');
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        Penjualan::findOrFail($id)->delete();
+
+        Alert::error('Selamat', 'Hapus penjualan produksi berhasil');
         return back();
     }
 }

@@ -14,3 +14,8 @@ function formatTgl($tgl)
 {
     return \Carbon\Carbon::parse($tgl)->isoFormat('DD-MM-Y');
 }
+
+function formatRupiahPdf($angka)
+{
+    return number_format($angka, 0, ',', '.');
+}
