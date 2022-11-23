@@ -124,7 +124,38 @@
 
 <br>
 
-<div class="judul">E. Laba Rugi Harian</div>
+<div class="judul">E. Gaji</div>
+<table border="1" class="text-center">
+    <thead>
+        <tr>
+            <th width="10%">No</th>
+            <th width="35%">Nama</th>
+            <th>Gaji</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($periode->gaji as $key => $bi)
+        <tr>
+            <td>{{ ++$key }}</td>
+            <td>{{ $bi->nama }}</td>
+            <td class="text-right">{{ formatRupiahPdf($bi->gaji) }}</td>
+            <td></td>
+        </tr>
+        @endforeach
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="2">Total</th>
+            <th class="text-right">{{ formatRupiahPdf($jumlahgaji) }}</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<br>
+
+<div class="judul">F. Laba Rugi Harian</div>
 <table class="text-center">
     <tr style="font-size:11pt">
         <th width="30%" class="text-left">Laba Rugi</th>

@@ -36,6 +36,7 @@ class BulanController extends Controller
             'selisih',
             'terjualLagi',
             'sortir',
+            'totalGaji',
         ));
     }
 
@@ -58,6 +59,7 @@ class BulanController extends Controller
             'selisih',
             'terjualLagi',
             'sortir',
+            'totalGaji',
         ))->setPaper('a4', 'landscape');
         return $cetak->stream('Laporan Bulanan Periode ' . $month . '-' . $year . '.pdf');
     }

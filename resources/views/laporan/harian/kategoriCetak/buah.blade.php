@@ -191,9 +191,44 @@
     </tfoot>
 </table>
 
+<br><br>
+
+<div class="judul">E. Gaji</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th style="width: 5%;">No</th>
+            <th style="width: 20%;">Nama</th>
+            <th style="width: 15%;">Gaji</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+        $no=1;
+        @endphp
+        @foreach ($periode->gaji as $item)
+        <tr>
+            <td class="text-center">{{ $no++ }}</td>
+            <td>{{ $item->nama }}</td>
+            <td class="text-right">{{ formatRupiahPdf($item->gaji) }}</td>
+            <td></td>
+        </tr>
+        @endforeach
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th class="text-right">{{ formatRupiahPdf($jumlahgaji) }}</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
 <br>
 
-<div class="judul">E. Laba Rugi Harian</div>
+<div class="judul">f. Laba Rugi Harian</div>
 <table border="1">
     <thead>
         <tr>

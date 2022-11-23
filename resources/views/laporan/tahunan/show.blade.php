@@ -70,6 +70,7 @@
                                                     <th colspan="2">Total (Rp)</th>
                                                     <th rowspan="2">Pendapatan</th>
                                                     <th rowspan="2">Biaya Produksi</th>
+                                                    <th rowspan="2">Gaji</th>
                                                     <th rowspan="2">Total Laba</th>
                                                     <th rowspan="2">Selisih</th>
                                                     <th rowspan="2">Terjual Lagi</th>

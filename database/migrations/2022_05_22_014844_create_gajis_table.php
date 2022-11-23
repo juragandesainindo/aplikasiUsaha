@@ -15,6 +15,7 @@ class CreateGajisTable extends Migration
     {
         Schema::create('gajis', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->nullable();
             $table->string('gaji')->nullable();
             $table->bigInteger('periode_id')->unsigned();
             $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('cascade');

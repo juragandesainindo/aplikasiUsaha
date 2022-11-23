@@ -37,14 +37,16 @@ class GrandTotalController extends Controller
         }
 
         $pendapatanTotal = $usahas->sum('penjualan_sum_total_jual') - $usahas->sum('pembelian_sum_total_biaya_beli');
-        $biayaTotal = $usahas->sum('biaya_sum_jumlah_biaya') + $usahas->sum('gaji_sum_gaji');
-        $totalLaba = $pendapatanTotal - $biayaTotal;
+        $biayaTotal = $usahas->sum('biaya_sum_jumlah_biaya');
+        $gajiTotal = $usahas->sum('gaji_sum_gaji');
+        $totalLaba = $pendapatanTotal - $biayaTotal - $gajiTotal;
 
 
         return view('laporan.grand-total.index', compact(
             'usahas',
             'pendapatanTotal',
             'biayaTotal',
+            'gajiTotal',
             'totalLaba'
         ));
     }
@@ -64,14 +66,16 @@ class GrandTotalController extends Controller
             ->get();
 
         $pendapatanTotal = $usahas->sum('penjualan_sum_total_jual') - $usahas->sum('pembelian_sum_total_biaya_beli');
-        $biayaTotal = $usahas->sum('biaya_sum_jumlah_biaya') + $usahas->sum('gaji_sum_gaji');
-        $totalLaba = $pendapatanTotal - $biayaTotal;
+        $biayaTotal = $usahas->sum('biaya_sum_jumlah_biaya');
+        $gajiTotal = $usahas->sum('gaji_sum_gaji');
+        $totalLaba = $pendapatanTotal - $biayaTotal - $gajiTotal;
 
 
         $cetak = PDF::loadview('laporan.grand-total.cetak', compact(
             'usahas',
             'pendapatanTotal',
             'biayaTotal',
+            'gajiTotal',
             'totalLaba'
         ))->setPaper('a4', 'landscape');
         $fileName = $print;

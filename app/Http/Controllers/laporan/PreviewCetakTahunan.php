@@ -73,9 +73,9 @@ $tonaseJualTotal = $periodeTotal->sum('penjualan_sum_tonase_jual');
 $biayaBeliTotal = $periodeTotal->sum('pembelian_sum_total_biaya_beli');
 $biayaJualTotal = $periodeTotal->sum('penjualan_sum_total_jual');
 $pendapatanTotal = $biayaJualTotal - $biayaBeliTotal;
-$operasionalTotal = $periodeTotal->sum('biaya_sum_jumlah_biaya') +
-    $periodeTotal->sum('gaji_sum_gaji');
-$totalTotal = $pendapatanTotal - $operasionalTotal;
+$operasionalTotal = $periodeTotal->sum('biaya_sum_jumlah_biaya');
+$GajiTotal = $periodeTotal->sum('gaji_sum_gaji');
+$totalTotal = $pendapatanTotal - $operasionalTotal - $GajiTotal;
 $selisihTotal = $tonaseJualTotal - $tonaseBeliTotal;
 $terjualLagiTotal = $periodeTotal->sum('sisa_sum_tonase_sisa_terjual');
 $sortirTotal = $selisihTotal - $terjualLagiTotal;

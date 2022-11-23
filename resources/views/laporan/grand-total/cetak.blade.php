@@ -71,6 +71,7 @@
                 <th>Nama Usaha</th>
                 <th>Pendapatan</th>
                 <th>Biaya Produksi</th>
+                <th>Gaji</th>
                 <th>Total Laba</th>
             </tr>
         </thead>
@@ -89,8 +90,10 @@
                     }}
                 </td>
                 <td class="text-right">
-                    {{ formatRupiahPdf($item->biaya->sum('jumlah_biaya') +
-                    $item->gaji->sum('gaji')) }}
+                    {{ formatRupiahPdf($item->biaya->sum('jumlah_biaya')) }}
+                </td>
+                <td class="text-right">
+                    {{ formatRupiahPdf($item->gaji->sum('gaji')) }}
                 </td>
                 <td class="text-right">
                     {{
@@ -109,6 +112,9 @@
             </th>
             <th class="text-right">
                 {{ formatRupiahPdf($biayaTotal) }}
+            </th>
+            <th class="text-right">
+                {{ formatRupiahPdf($gajiTotal) }}
             </th>
             <th class="text-right">
                 {{ formatRupiahPdf($totalLaba) }}

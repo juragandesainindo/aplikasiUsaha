@@ -55,6 +55,7 @@ class HarianController extends Controller
             'selisihharga',
             'pendapatankotor',
             'jumlahbiaya',
+            'jumlahgaji',
             'labarugi',
         ));
     }
@@ -84,6 +85,7 @@ class HarianController extends Controller
                 'selisihharga',
                 'pendapatankotor',
                 'jumlahbiaya',
+                'jumlahgaji',
                 'labarugi',
 
             ))->setPaper('a4', 'landscape');
@@ -107,6 +109,7 @@ class HarianController extends Controller
                 'selisihharga',
                 'pendapatankotor',
                 'jumlahbiaya',
+                'jumlahgaji',
                 'labarugi',
 
             ))->setPaper('a4', 'potrait');

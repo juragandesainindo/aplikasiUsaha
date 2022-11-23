@@ -11,7 +11,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Gaji</label>
+                        <label>Nama</label>
+                        <input type="text" name="nama" value="{{ old('nama') }}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>nominal</label>
                         <input type="text" name="gaji" value="{{ old('gaji') }}" class="form-control rupiah" required>
                     </div>
 
@@ -65,17 +69,15 @@
 @endswitch
 <!-- Modal Delete End -->
 
-@if ($periode->gaji->count() == 0)
 <a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createGaji" type="button">Tambah
     Gaji</a>
-@else
-@endif
 
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>No</th>
+                <th>Nama</th>
                 <th>Gaji</th>
                 <th>Aksi</th>
             </tr>
@@ -84,6 +86,7 @@
             @foreach ($periode->gaji as $key => $item)
             <tr>
                 <td>{{ ++$key }}</td>
+                <td>{{ $item->nama }}</td>
                 <td>{{ formatRupiah($item->gaji) }}</td>
                 <td>
                     <div class="btn-group btn-group-sm">
@@ -99,7 +102,7 @@
             <tr>
                 <th></th>
                 <th>Total</th>
-                {{-- <th colspan="2">{{ formatRupiah($totalBiaya) }}</th> --}}
+                <th colspan="2">{{ formatRupiah($gaji) }}</th>
             </tr>
         </tfoot>
     </table>

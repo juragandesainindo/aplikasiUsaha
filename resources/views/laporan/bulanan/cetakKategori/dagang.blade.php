@@ -6,6 +6,7 @@
         <th>Total Penjualan</th>
         <th>Pendapatan</th>
         <th>Biaya Produksi</th>
+        <th>Gaji</th>
         <th>Laba Bersih</th>
     </thead>
     <tbody>
@@ -20,7 +21,9 @@
             <td class="text-right">{{
                 formatRupiahPdf($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli')) }}
             </td>
-            <td class="text-right">{{ formatRupiahPdf($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')) }}
+            <td class="text-right">{{ formatRupiahPdf($item->biaya->sum('jumlah_biaya')) }}
+            </td>
+            <td class="text-right">{{ formatRupiahPdf($item->gaji->sum('gaji')) }}
             </td>
             <td class="text-right">{{
                 formatRupiahPdf(($item->penjualan->sum('total_jual')-$item->pembelian->sum('total_biaya_beli'))-($item->biaya->sum('jumlah_biaya')+$item->gaji->sum('gaji')))
@@ -39,6 +42,7 @@
             <th class="text-right">{{ formatRupiahPdf($totalPenjualan) }}</th>
             <th class="text-right">{{ formatRupiahPdf($pendapatan) }}</th>
             <th class="text-right">{{ formatRupiahPdf($operasional) }}</th>
+            <th class="text-right">{{ formatRupiahPdf($totalGaji) }}</th>
             <th class="text-right">{{ formatRupiahPdf($total) }}</th>
         </tr>
     </tfoot>

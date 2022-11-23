@@ -198,8 +198,40 @@
     </div>
 
     <div class="card-body mb-30">
+        <h5 class="h4 text-blue mb-20">E. Gaji</h5>
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th width="15%">No</th>
+                    <th>Nama</th>
+                    <th>Gaji</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                $no=1;
+                @endphp
+                @foreach ($periode->gaji as $item)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ formatRupiahPdf($item->gaji) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>{{ formatRupiahPdf($jumlahgaji) }}</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="card-body mb-30">
         <div class="pb-20 pd-20 d-flex justify-content-around">
-            <h5 class="h4 text-blue mb-20">E. Laba Rugi</h5>
+            <h5 class="h4 text-blue mb-20">F. Laba Rugi</h5>
             <h5 class="h4 text-blue mb-20">{{ formatRupiahPdf($labarugi) }}</h5>
             <h5 class="h4 text-blue mb-20">
                 @if ($labarugi < 0) Minus @else @endif </h5>

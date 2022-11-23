@@ -32,5 +32,6 @@ $selisihharga = $hargaratarata - $grandtotalbeli;
 $pendapatankotor = $totaljual - $totalbiaya;
 
 $jumlahbiaya = $periode->biaya->sum('jumlah_biaya');
+$jumlahgaji = $periode->gaji->sum('gaji');
 
-$labarugi = $pendapatankotor - $jumlahbiaya;
+$labarugi = $pendapatankotor - $jumlahbiaya - $jumlahgaji;

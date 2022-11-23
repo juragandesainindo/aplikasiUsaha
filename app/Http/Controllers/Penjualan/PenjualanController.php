@@ -50,6 +50,7 @@ class PenjualanController extends Controller
             ->withSum('biaya', 'jumlah_biaya')
             ->withSum('sisa', 'tonase_sisa_terjual')
             ->withSum('sisa', 'total_sisa_terjual')
+            ->withSum('gaji', 'gaji')
             ->get();
         // dd($periodes);
         foreach ($periodes as $periode) {
@@ -65,6 +66,7 @@ class PenjualanController extends Controller
         $sortir = $selisih - $terjualLagi;
 
         $qtyTernak = $periodes->sum('pembelian_sum_tonase_super') - $tonaseJual;
+        $gaji = $periodes->sum('gaji_sum_gaji');
         // dd($qtyTernak);
 
         $edit = 1;
@@ -82,7 +84,8 @@ class PenjualanController extends Controller
             'sortir',
             'edit',
             'delete',
-            'qtyTernak'
+            'qtyTernak',
+            'gaji'
         ));
     }
 
@@ -125,6 +128,7 @@ class PenjualanController extends Controller
     public function storeGaji(Request $request)
     {
         $input = $request->validate([
+            'nama' => 'required',
             'gaji'       => 'nullable',
             'periode_id'        => 'required',
             'datausaha_id'      => 'required',
@@ -141,6 +145,7 @@ class PenjualanController extends Controller
     {
         $biaya = Gaji::findOrFail($id);
         $input = $request->validate([
+            'nama'       => 'nullable',
             'gaji'       => 'nullable',
         ]);
         $input['gaji'] = str_replace('.', '', $input['gaji']);
